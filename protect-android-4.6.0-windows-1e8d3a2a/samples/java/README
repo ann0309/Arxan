@@ -1,0 +1,19 @@
+Description:
+The purpose of this sample is to show how to protect Android application written in Java. Game doesn't have any native component and it is written purely using Android custom views.
+
+
+Installation:
+1) Follow documentation to build and install A4A
+
+2) Build memory-game apk using following commands
+	cd memory-game-master
+	./gradlew clean build bundle
+
+or if you don't want to build just use pre-built APK or AAB
+
+3) Open blueprint.json or blueprint-aab.json and modify "input" and "output" options in globalConfig to reflect your paths 
+
+4) Execute: 
+	protect-android -b blueprint.json
+	OR
+	protect-android -b blueprint-aab.json for AAB mode

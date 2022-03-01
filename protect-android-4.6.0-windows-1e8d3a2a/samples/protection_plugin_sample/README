@@ -1,0 +1,18 @@
+Description:
+The purpose of this sample is to show how ai.digital.protect-android plugin works.
+This plugin simplifies your working pipeline with protect-android protection
+
+Installation:
+1) Follow documentation to install Application Protection for Android
+
+2) Build ProtectionPluginSample APK using following commands
+```
+cd ProtectionPluginSample
+./gradlew assemble
+
+This will build and protect app.
+```
+
+3) If you are using Android Studio, sync gradle files, and press Run app button. App will be built, protected and installed to connected device or emulator.
+
+4) To configure ai.digital.protect-android plugin please refer to Android Gradle Protection plugin documentation.

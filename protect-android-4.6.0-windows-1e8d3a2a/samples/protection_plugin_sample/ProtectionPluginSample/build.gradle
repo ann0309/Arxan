@@ -1,0 +1,22 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+
+        // Relative path to a directory containing ai.digital.protectandroid plugin jar
+        flatDir {
+            dirs '../../../bin'
+        }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.3"
+
+        // Add ai.digital.protect-android plugin as a dependency
+        classpath group: 'ai.digital.protect-android', name: 'ai.digital.protect-android', version: '1.1.0'
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

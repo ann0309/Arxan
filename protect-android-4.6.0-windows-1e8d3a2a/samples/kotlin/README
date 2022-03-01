@@ -1,0 +1,20 @@
+Description:
+The purpose of this sample is to show how to protect Android application written in Kotlin. Application has two screens : login screen and congrats screen. Login screen asks user to enter the password and congrats screen prints poem string coming from native library.
+
+
+Installation:
+1) Follow documentation to build and install A4A
+
+2) Build SimpleSimon apk using following commands
+	cd SimpleSimon
+	./gradlew clean build bundle
+
+or if you don't want to build just use pre-built APK or AAB
+
+3) Open blueprint.json or blueprint-aab.json and modify "input" and "output" options in globalConfig to reflect your paths 
+
+4) Execute: 
+	protect-android -b blueprint.json
+	OR
+	protect-android -b blueprint-aab.json for AAB mode
+

@@ -1,0 +1,574 @@
+{
+  "targets": {
+    // Path to APK file which we want to protect
+    "input": "apk/SimpleSimon.apk",
+    // Path to output directory
+    "output": "output/"
+  },
+  "globalConfiguration": {
+    "seed": 12312,
+    "verbosityLevel": {
+      "global": 1
+    },
+    "appAware": {
+      //Follow analytics documentation to fill these fields
+      "disable": false,
+      "debug": true,
+      "endpointURL": "https://endpoint.example.com",
+      "applicationToken": "sample12-3456-7890-1234-567890123456",
+      "uaiUserDefaultsKey": "SomeKey",
+      "checkpoints": {
+        "startupCheckpoint": {
+          "invocationLocation": "com.arxan.simplesimon.MainActivity.onCreate"
+        }
+      },
+      "heartbeat": {
+        "disable": false,
+        "interval": 60,
+        "initialDelay": 5
+      }
+    },
+    // renaming, controlFlowFlattening, inlining, stringEncryption suffer from reflection. Singatures of methods defined in proguard.txt file will be untouched
+    "keepSignatures": "proguard.txt"
+  },
+  "guardConfiguration": {
+    // Code obfuscation guards
+    "renaming": {
+      "disable": false,
+      "renameInResources": true,
+      "renameInNativeLibraries": true
+    },
+    "controlFlowFlattening": {
+      "disable": false
+    },
+    "staticMemberShuffling": {
+      "disable": false
+    },
+    "annotationEncryption": {
+      "disable": false,
+      "debug": true
+    },
+    "inlining": {
+      "disable": false
+    },
+    "stringEncryption": {
+      "disable": false
+    },
+    "operatorRemoval": {
+      "disable": false
+    },
+    "literalHiding": {
+      "disable": false
+    },
+    "debugInfoStrip": {
+      "disable": false,
+      "exclude": [
+        {
+          "type": "class",
+          "name": "android.*"
+        }
+      ]
+    },
+    "deadCodeInjection": {
+      "disable": false,
+      "targets": [
+        {
+          //To prevent from having too much code bloat we only inject dead code into one class which is the most sensitive
+          "type": "method",
+          "name": "com.arxan.simplesimon.MainActivity.*"
+        }
+      ]
+    },
+    "callHiding": {
+      "disable": false,
+      "targets": [
+        {
+          //Additional protection for most sensitive methods
+          "type": "method",
+          "name": "com.arxan.simplesimon.MainActivity.isPasswordValid"
+        },
+        {
+          "type": "method",
+          "name": "com.arxan.simplesimon.MainActivity.attemptLogin"
+        }
+      ]
+    },
+    "customGuard": [
+      {
+        "debug": false,
+        "disable": false,
+        "guardMethod": "com.arxan.simplesimon.CustomGuard.customGuard1",
+        "invocationLocations": [
+          {
+            "name": "com.arxan.simplesimon.MainActivity.attemptLogin",
+            "type": "method"
+                }
+            ],
+        "name": "Custom guard instance 1",
+        "nonTamperAction": {
+          "name": "com.arxan.simplesimon.TamperAction.customGuardNonTamperAction",
+          "type": "method"
+        },
+        "tamperAction": {
+          "name": "com.arxan.simplesimon.TamperAction.customGuardTamperAction",
+          "type": "method"
+        }
+      },
+      {
+        "debug": false,
+        "disable": false,
+        "guardMethod": "com.arxan.simplesimon.CustomGuard.customGuard2",
+        "invocationLocations": [
+          {
+            "name": "com.arxan.simplesimon.MainActivity.onCreate",
+            "type": "method"
+                }
+            ],
+        "name": "Custom guard instance 2",
+        "nonTamperAction": {
+          "name": "com.arxan.simplesimon.TamperAction.customGuardNonTamperAction2",
+          "type": "method"
+        },
+        "tamperAction": {
+          "name": "com.arxan.simplesimon.TamperAction.customGuardTamperAction2",
+          "type": "method"
+        }
+      }
+    ],
+    "maliciousPackageDetection": [
+      {
+        "name": "Malicious package detection",
+        "disable": false,
+        "debug": true,
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "com.arxan.simplesimon.MainActivity.attemptLogin"
+        }
+       ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.maliciousPackageDetectionGuardTamperAction"
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.maliciousPackageDetectionGuardNonTamperAction"
+        }
+     }
+    ],
+    "debuggerDetection": [
+      {
+        "disable": false,
+        "name": "Debugger detection instance 1",
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "com.arxan.simplesimon.MainActivity.attemptLogin"
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.debuggerDetectionTamperAction"
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.debuggerDetectionNonTamperAction"
+        }
+      },
+      {
+        "disable": false,
+        "name": "Debugger detection instance 2",
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "com.arxan.simplesimon.MainActivity.onCreate"
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.debuggerDetectionTamperAction2"
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.debuggerDetectionNonTamperAction2"
+        }
+      }
+    ],
+    // Guards checking runtime
+    "rootDetection": [
+      {
+        "disable": false,
+        "debug": true,
+        "name": "Root detection instance 1",
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "com.arxan.simplesimon.MainActivity.attemptLogin"
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.rootDetectionTamperAction",
+          "immediateAction": true
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.rootDetectionNonTamperAction",
+          "immediateAction": true
+        }
+      },
+      {
+        "disable": false,
+        "debug": true,
+        "name": "Root detection startup instance",
+        "invocationLocations": [
+          {
+            "type": "startup",
+            "initialDelay": 30
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.rootDetectionTamperAction2",
+          "immediateAction": true
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.rootDetectionNonTamperAction2",
+          "immediateAction": true
+        }
+      }
+    ],
+    "hookDetection": [
+      {
+        "disable": false,
+        "executeOnBackgroundThread": true,
+        "name": "Hook detection instance 1",
+        "detectMethodHooking": {
+          "include": [
+            {
+              "type": "class",
+              "name": "com.arxan.simplesimon.MainActivity"
+            },
+            {
+              "type": "method",
+              "name": "com.arxan.simplesimon.TamperAction.hookDetectionTamperAction"
+            }
+          ]
+        },
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "com.arxan.simplesimon.MainActivity.onCreate"
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.hookDetectionTamperAction"
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.hookDetectionNonTamperAction"
+        }
+      }
+    ],
+    "signatureCheck": [
+      {
+        "name": "Signature check instance 1",
+        "disable": false,
+        "signaturePublicKeySHA256": [ "6654a6d1e55776c596f788aae85c15c22d268f7c5696c7397bc52e9393fe793f" ],
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "com.arxan.simplesimon.MainActivity.onCreate"
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.signatureCheckTamperAction"
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.signatureCheckNonTamperAction"
+        }
+      }
+    ],
+    "emulatorDetection": [
+      {
+        "name": "Emulator detection instance 1",
+        "disable": false,
+        "executeOnBackgroundThread": true,
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "com.arxan.simplesimon.MainActivity.onCreate"
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.emulatorDetectionTamperAction"
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.emulatorDetectionNonTamperAction"
+        }
+      },
+      {
+        "name": "Emulator detection periodic instance",
+        "disable": false,
+        "executeOnBackgroundThread": true,
+        "invocationLocations": [
+          {
+            "type": "periodic",
+            "initialDelay": 5,
+            "interval": 10,
+            "probability": 90
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.emulatorDetectionTamperAction2"
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.emulatorDetectionNonTamperAction2"
+        }
+      }
+    ],
+    "resourceEncryption": {
+      "disable": false,
+      "debug": true,
+      "files": [
+        "assets/textfile.txt"
+      ]
+    },
+    "logStrip": {
+      "disable": false,
+      "safeMode": false
+    },
+    "checksum": [
+      {
+        "disable": false,
+        "debug": true,
+        "name": "checksum1",
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "com.arxan.simplesimon.MainActivity.onCreate"
+          }
+        ],
+        "tamperAction": {
+          "immediateAction": false,
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperActionKotlin.checksumTamperAction"
+        },
+        "nonTamperAction": {
+          "immediateAction": true,
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperActionKotlin.checksumNonTamperAction"
+        }
+      }
+    ],
+    "dynamicInstrumentationDetection": [
+      {
+        "name": "Dynamic instrumentation detection instance 1",
+        "disable": false,
+        "debug": true,
+        "frida": {
+          "detectFridaPresence": {
+            "disablePortScanning": false,
+            "excludePorts": [
+              58668
+            ],
+            "disableEmbeddedBinaryCheck": false,
+            "disableProcessCheck": false,
+            "disableParentCheck": false,
+            "disablePreloadedBinaryCheck": false
+          },
+          "detectMethodHooking": {
+            "include": [
+              {
+                "type": "method",
+                "name": "com.arxan.simplesimon.MainActivity.isPasswordValid"
+              },
+              {
+                "type": "class",
+                "name": "com.arxan.simplesimon.MainActivity$UserLoginTask"
+              },
+              {
+                "type": "method",
+                "name": "com.arxan.simplesimon.MainActivity.attemptLogin"
+              },
+              {
+                "type": "class",
+                "name": "com.arxan.simplesimon.TamperAction"
+              },
+              {
+                "type": "class",
+                "name": "com.arxan.simplesimon.TamperActionKotlin"
+              }
+            ]
+          }
+        },
+        "gameGuardian": { },
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "com.arxan.simplesimon.MainActivity.attemptLogin"
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.dynamicInstrumentationDetectionTamperAction"
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.dynamicInstrumentationDetectionNonTamperAction"
+        }
+      }
+    ],
+    "resourceVerification": [
+      {
+        "name": "Resource verification instance 1",
+        "disable": false,
+        "debug": true,
+        "invocationLocations": [
+          {
+            "type": "auto"
+          }
+        ],
+        "tamperAction": {
+          "type": "fail",
+          "immediateAction": false
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        },
+        "files": [
+          "lib/arm64-v8a/libnative-lib.so",
+          "lib/armeabi-v7a/libnative-lib.so",
+          "lib/x86/libnative-lib.so",
+          "lib/x86_64/libnative-lib.so"
+        ]
+      },
+      {
+        "name": "Resource verification instance 2",
+        "disable": false,
+        "debug": true,
+        "executeOnBackgroundThread": true,
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "com.arxan.simplesimon.MainActivity.onCreate"
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperActionKotlin.resourceVerificationTamperAction"
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperActionKotlin.resourceVerificationNonTamperAction"
+        },
+        "files": [
+          "assets/textfile.txt",
+          "res/anim/",
+          "res/color-v23/"
+        ]
+      }
+    ],
+    "classEncryption": {
+      "disable": false,
+      "debug": true,
+      "targets": [
+        // CongratsActivity and inner classes
+        "com.arxan.simplesimon.CongratsActivity*",
+        // Classes in package
+        "nl.dionsegijn.konfetti.*"
+      ]
+    },
+    "virtualizationDetection": [
+      {
+        "name": "Virtualization detection instance 1",
+        "disable": false,
+        "debug": true,
+        "executeOnBackgroundThread": true,
+        "invocationLocations": [
+          {
+            "type": "auto"
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.virtualizationDetectionTamperAction"
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.virtualizationDetectionNonTamperAction"
+        }
+      },
+      {
+        "name": "Virtualization detection instance 2",
+        "disable": false,
+        "debug": true,
+        "executeOnBackgroundThread": true,
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "com.arxan.simplesimon.MainActivity.attemptLogin"
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.virtualizationDetectionTamperAction2"
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.virtualizationDetectionNonTamperAction2"
+        }
+      }
+    ],
+    "virtualControlDetection": [
+      {
+        "name": "Virtual control detection instance 1",
+        "disable": false,
+        "debug": true,
+        "executeOnBackgroundThread": true,
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "com.arxan.simplesimon.MainActivity.onCreate"
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.virtualControlDetectionTamperAction"
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.virtualControlDetectionNonTamperAction"
+        }
+      },
+      {
+        "name": "Virtual control detection instance 2",
+        "disable": false,
+        "debug": true,
+        "executeOnBackgroundThread": true,
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "com.arxan.simplesimon.MainActivity.attemptLogin"
+          }
+        ],
+        "tamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.virtualControlDetectionTamperAction2"
+        },
+        "nonTamperAction": {
+          "type": "method",
+          "name": "com.arxan.simplesimon.TamperAction.virtualControlDetectionNonTamperAction2"
+        }
+      }
+    ]
+  }
+}

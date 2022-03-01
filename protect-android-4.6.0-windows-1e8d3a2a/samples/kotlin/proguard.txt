@@ -1,0 +1,5 @@
+# ---------------- Reflection found by Reflection Debugger ----------------
+-keep class androidx.appcompat.app.AppCompatViewInflater {
+  *;
+}
+# ------------------------ End of reflection list -------------------------

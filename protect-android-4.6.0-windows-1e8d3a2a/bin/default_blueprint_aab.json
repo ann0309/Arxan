@@ -1,0 +1,200 @@
+{
+  "globalConfiguration": {
+    "verbosityLevel": {
+      "global": 1
+    },
+    "appAware": {
+      "endpointURL": "auto",
+      "applicationToken": "auto",
+      "heartbeat": {
+        "interval": 60,
+        "initialDelay": 10
+      }
+    }
+  },
+  "guardConfiguration": {
+    "controlFlowFlattening": {
+      "safeMode": true
+    },
+    "stringEncryption": { },
+    "operatorRemoval": { 
+      "disable": true
+    },
+    "literalHiding": { 
+      "disable": true
+    },
+    "debugInfoStrip": {
+      "exclude": [
+        {
+          "type": "class",
+          "name": "android.*"
+        },
+        {
+          "type": "class",
+          "name": "androidx.*"
+        }
+      ]
+    },
+    "logStrip": {
+      "safeMode": true
+    },
+    "debuggerDetection": [
+      {
+        "name": "Debugger Detection Guard",
+        "invocationLocations": [
+            {
+              "type": "periodic",
+              "interval": 15,
+              "initialDelay": 0,
+              "probability": 100
+            }
+        ],
+        "tamperAction": {
+          "type": "fail"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ],
+    "rootDetection": [
+      {
+        "name": "Root Detection Guard",
+        "invocationLocations": [
+            {
+              "type": "periodic",
+              "interval": 90,
+              "initialDelay": 1,
+              "probability": 100
+            }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ],
+    "hookDetection": [
+      {
+        "name": "Hook Detection Guard",
+        "invocationLocations": [
+          {
+            "type": "periodic",
+            "interval": 80,
+            "initialDelay": 2,
+            "probability": 100
+          }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        },
+        "detectHookInstalled": false,
+        "detectHookTarget": true,
+        "detectMagiskHiddenModules": true
+      }
+    ],
+    "emulatorDetection": [
+      {
+        "name": "Emulator Detection Guard",
+        "invocationLocations": [
+            {
+              "type": "periodic",
+              "interval": 90,
+              "initialDelay": 5,
+              "probability": 100
+            }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        },
+        "detectKoPlayer": false,
+        "detectMEmuPlay": false
+      }
+    ],
+    "dynamicInstrumentationDetection": [
+      {
+        "name": "Dynamic Instrumentation Detection Guard",
+        "frida": { },
+        "invocationLocations": [
+            {
+              "type": "periodic",
+              "interval": 80,  
+              "initialDelay": 0,
+              "probability": 100
+            }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ],
+    "checksum": [
+      {
+        "name": "Checksum Guard",
+        "invocationLocations": [
+            {
+              "type": "periodic",
+              "interval": 60,
+              "initialDelay": 3,
+              "probability": 100
+            }
+        ],
+        "tamperAction": {
+          "type": "fail"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ],
+    "virtualizationDetection": [
+      {
+        "name": "Virtualization Detection Guard",
+        "invocationLocations": [
+            {
+              "type": "periodic",
+              "interval": 60,
+              "initialDelay": 2,
+              "probability": 100
+            }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ],
+    "virtualControlDetection": [
+      {
+        "name": "Virtual Control Detection Guard",
+        "invocationLocations": [
+            {
+              "type": "periodic",
+              "interval": 10,
+              "initialDelay": 5,
+              "probability": 100
+            }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ]
+  }
+}

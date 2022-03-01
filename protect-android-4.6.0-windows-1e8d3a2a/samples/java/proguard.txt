@@ -1,0 +1,8 @@
+# ---------------- Reflection found by Reflection Debugger ----------------
+-keep class com.snatik.matches.fragments.ThemeSelectFragment {
+  *;
+}
+-keep class com.snatik.matches.ui.PopupWonView {
+  *;
+}
+# ------------------------ End of reflection list -------------------------

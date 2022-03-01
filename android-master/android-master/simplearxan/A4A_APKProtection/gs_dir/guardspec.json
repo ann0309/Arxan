@@ -1,0 +1,888 @@
+{
+    "globalConfiguration": {//guard設計
+        "seed": 9527,
+        "verbosityLevel": {
+            "global": 1
+        },
+        "enableReflectionDebugging": false,
+        "charsetType": "ascii",
+        "keepSignatures": "proguard-rules.cpp",
+        "threatAnalytics": {
+		      //Follow analytics documentation to fill these fields
+		      "disable": true,
+		      "debug": true,
+		      // "endpointURL": "auto",
+		      // "applicationToken": "auto",
+		       "applicationToken": "ef433033-3384-48eb-800f-6d50bf7d8f85",
+		       "endpointURL": "https://5wa1ue1oyh.cliqtrq.com",
+		      "heartbeat":  {
+		        "disable" : true,
+		        "interval" : 600,
+		        "initialDelay" : 600
+      }
+         },
+         "exclude": [
+            {
+                "type": "class",
+                "name": "*"
+            }
+        ],
+        "include": [
+            {
+                "type": "class",
+                "name": "*"
+            }
+        ]
+    },
+    "guardConfiguration": {//guard設計
+        "debugInfoStrip": {
+            "disable": false
+        },
+        "logStrip": {
+            "disable": false,
+            "safeMode": true //避免刪除有return值的log
+        },
+        "renaming": {
+            "disable": false,
+            "renameInResources": true,
+            "renameInNativeLibraries": false,
+            "makeEverythingPublic": false
+        },
+        "classEncryption": {
+            "disable": false,
+            "debug": true,
+            "targets": [
+                "pet.ca.*"
+            ]
+        },
+        "stringEncryption": {
+            "disable": false
+        },
+        "annotationEncryption": {
+            "disable": false,
+            "debug": true,
+            "targets": {
+                "exclude": [
+                    {
+                        "type":"class",
+                        "name":"kotlin.*"
+                    }
+                ],
+                "include": [
+                    {
+                        "type":"class",
+                        "name":"kotlin.Metadata"
+                    }
+                ]
+            }
+        },
+        "inlining": {
+            "disable": false
+        },
+        "staticMemberShuffling": {
+            "disable": false
+        },
+        "operatorRemoval": {
+            "disable": false,
+            "replaceAddOperators": true,
+            "replaceAndOperators": true,
+            "replaceOrOperators": true,
+            "replaceXorOperators": true,
+            "exclude": [
+                {
+                    "type": "method",
+                    "name": "com.google.*"
+                },
+                {
+                    "type": "method",
+                    "name": "com.android.*"
+                },
+                {
+                    "type": "method",
+                    "name": "android.*"
+                }
+            ]
+        },
+        "controlFlowFlattening": {
+            "disable": false,
+            "safeMode": false,
+            "exclude": [
+                {
+                    "type": "method",
+                    "name": "com.google.*"
+                },
+                {
+                    "type": "method",
+                    "name": "com.android.*"
+                },
+                {
+                    "type": "method",
+                    "name": "android.*"
+                }
+            ]
+        },
+        "deadCodeInjection": {
+            "disable": false,
+            "targets": [
+                {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.MainActivity.onCreate"
+                }
+            ]
+        },
+        "callHiding": {
+            "disable": false,
+            "targets": [
+                {
+                    "type": "method",
+                    "name": "pet.ca.*"
+                }
+            ]
+        },
+        "malwarePrevention": {
+            "disable": false,
+            "strandhogg1": {},
+            "strandhogg2": {}
+        },
+        "literalHiding": {
+            "disable": false,
+            "hideIntLiterals": true,
+            "hideFloatLiterals": true,
+            "hideLongLiterals": true,
+            "hideDoubleLiterals": true,
+            "exclude": [
+                {
+                    "type": "method",
+                    "name": "com.google.*"
+                },
+                {
+                    "type": "method",
+                    "name": "com.android.*"
+                },
+                {
+                    "type": "method",
+                    "name": "android.*"
+                }
+            ]
+        },
+        "resourceEncryption":{
+            "disable": false,
+            "debug": true,
+            "files": [
+                "assets/ISBG.jpg"
+            ]
+        },
+        "resourceVerification": [
+            {
+                "name": "rvg_1",
+                "disable": false,
+                "debug": true,
+                "inlineProbability": 100,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "pet.ca.simplearxan.GuardLocation.rvg"
+                    }
+                ],
+                "tamperAction": {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.rvgTamper"
+                },
+                "nonTamperAction": {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.rvgNonTamper"
+                },
+                "files": [
+                    "assets/"
+                ]
+            }
+        ],
+        "debuggerDetection": [
+            {
+                "name": "ddg_1",
+                "disable": false,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "pet.ca.simplearxan.GuardLocation.ddg"
+                    }
+                ],
+                "tamperAction": {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.debuggerTamper"
+                },
+                "nonTamperAction": {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.debuggerNonTamper"
+                }
+            }
+        ],
+        "emulatorDetection": [
+            {
+                "name": "edg_1",
+                "disable": false,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "pet.ca.simplearxan.GuardLocation.edg"
+                    }
+                ],
+                "inlineProbability": 100,
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.emulatorNonTamper"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.emulatorTamper"
+                }
+            }
+        ],
+        "rootDetection": [
+            {
+                "name": "rdg_root",
+                "disable": false,
+                "debug": true,
+                "executeOnBackgroundThread" : true,
+                "detectRootManagementApps": false,
+                "detectRootHidingApps" : false,
+                "detectRootRequiringApps": false,
+                "detectMagiskHide": false,
+                "inlineProbability": 100,
+                "invocationLocations":[
+                	{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.GuardLocation.rdg1"
+                }
+                ],
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.rootNonTamper"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.rootTamper"
+                }
+            },
+            {
+                "name": "rdg_RootManagementApps",
+                "disable": false,
+                "debug": true,
+                "executeOnBackgroundThread" : true,
+                "detectRootManagementApps": true,
+                "detectRootHidingApps" : false,
+                "detectRootRequiringApps": false,
+                "detectMagiskHide": false,
+                "inlineProbability": 100,
+                "invocationLocations":[{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.GuardLocation.rdg2"
+                }
+                ],
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.rootManagementAppsNonTamper"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.rootManagementAppsTamper"
+                }
+            },
+            {
+                "name": "rdg_RootHidingApps",
+                "disable": false,
+                "debug": true,
+                "executeOnBackgroundThread" : true,
+                "detectRootManagementApps": false,
+                "detectRootHidingApps" : true,
+                "detectRootRequiringApps": false,
+                "detectMagiskHide": false,
+                "inlineProbability": 100,
+                "invocationLocations":[{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.GuardLocation.rdg3"
+                }
+                ],
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.rootHidingAppsNonTamper"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.rootHidingAppsTamper"
+                }
+            },
+            {
+                "name": "rdg_RootRequiringApps",
+                "disable": false,
+                "debug": true,
+                "executeOnBackgroundThread" : true,
+                "detectRootManagementApps": false,
+                "detectRootHidingApps" : false,
+                "detectRootRequiringApps": true,
+                "detectMagiskHide": false,
+                "inlineProbability": 100,
+                "invocationLocations":[{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.GuardLocation.rdg4"
+                }
+                ],
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.rootRequiringAppsNonTamper"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.rootRequiringAppsTamper"
+                }
+            },
+            {
+                "name": "rdg_RootMagiskHide",
+                "disable": false,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "detectRootManagementApps": false,
+                "detectRootHidingApps" : false,
+                "detectRootRequiringApps": false,
+                "detectMagiskHide": true,
+                "disableMagiskHideDetectionBypassTamper": false,
+                "inlineProbability": 100,
+                "invocationLocations":[{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.GuardLocation.rdg5"
+                }
+                ],
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.rootMagiskHideNonTamper"
+                    // "name": "pet.ca.simplearxan.MainActivity.rootDialog"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    // "name": "pet.ca.simplearxan.JKFragment.rootMagiskHideTamper"
+                    "name": "pet.ca.simplearxan.MainActivity.rootDialog"
+                }
+            }//,
+            // {
+            //     "name": "rdg_targetOS",
+            //     "disable": false,
+            //     "debug": true,
+            //     "inlineProbability": 100,
+            //     "invocationLocations":[
+            //         {
+            //             "type": "method",
+            //             "name": "pet.ca.simplearxan.GuardLocation.rdg6"
+            //         }
+            //     ],
+            //     "nonTamperAction":{
+            //         "type": "method",
+            //         "name": "pet.ca.simplearxan.JKFragment.rootTargetOSNonTamper"
+            //     },
+            //     "tamperAction":{
+            //         "type": "method",
+            //         "name": "pet.ca.simplearxan.JKFragment.rootTargetOSTamper"
+            //     },
+            //     "targetOSRange" : {
+            //         "max": "11",
+            //         "min": "1"
+            //     }
+            // }
+        ],
+        "hookDetection": [
+            {
+                "name": "hdg_detectHookTarget",
+                "disable": false,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "pet.ca.simplearxan.GuardLocation.hdg1"
+                    }
+                ],
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.hookTargetNonTamper"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.hookTargetTamper"
+                },
+                "detectHookInstalled": false,
+                "detectHookTarget": true,
+                "detectHookRequiringApps": false,
+                "inlineProbability": 100
+            },
+            {
+                "name": "hdg_detectHookInstalled",
+                "disable": false,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "pet.ca.simplearxan.GuardLocation.hdg2"
+                    }
+                ],
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.hookInstalledNonTamper"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.hookInstalledTamper"
+                },
+                "detectHookInstalled": true,
+                "detectHookTarget": false,
+                "detectHookRequiringApps": false,
+                "inlineProbability": 100
+            },
+            {
+                "name": "hdg_detectHookRequiringApps",
+                "disable": false,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "pet.ca.simplearxan.GuardLocation.hdg3"
+                    }
+                ],
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.hookRequiringAppsNonTamper"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.hookRequiringAppsTamper"
+                },
+                "detectHookInstalled": false,
+                "detectHookTarget": false,
+                "detectHookRequiringApps": true,
+                "apps": [
+                    "de.robv.android.xposed.installer",
+                    "fi.veetipaananen.android.disableflagsecure"
+                ],
+                "inlineProbability": 100
+            },
+            {
+                "name": "hdg_detectMagiskHiddenModules",
+                "disable": false,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "pet.ca.simplearxan.GuardLocation.hdg4"
+                    }
+                ],
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.hookMagiskHiddenModulesNonTamper"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.hookMagiskHiddenModulesTamper"
+                },
+                "detectHookInstalled": false,
+                "detectHookTarget": false,
+                "detectHookRequiringApps": false,
+                "detectMagiskHiddenModules": true,
+                "apps": [
+                    "de.robv.android.xposed.installer",
+                    "fi.veetipaananen.android.disableflagsecure"
+                ],
+                "inlineProbability": 100
+            }
+        ],
+        "dynamicInstrumentationDetection": [
+            {
+                "name": "fdg_1",
+                "disable": false,
+                "debug": true,
+                "frida": {
+                    "detectFridaPresence":{}
+                    // "detectMethodHooking":{
+                    //     "include":[
+                    //         {
+                    //             "type": "method",
+                    //             "name": ""
+                    //         },
+                    //         {
+                    //             "type": "class",
+                    //             "name": ""
+                    //         }
+                    //     ],
+                    //     "exclude":[
+                    //         {
+                    //             "type": "method",
+                    //             "name": "*"
+                    //         }
+                    //     ]
+                    // }
+                },
+                "inlineProbability": 75,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "pet.ca.simplearxan.GuardLocation.fdg"
+                    }
+                ],
+                "tamperAction": {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.fridaTamper"
+                },
+                "nonTamperAction": {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.fridaNonTamper"
+                }
+            }
+        ],
+        "checksum": [
+            {
+                "name": "csg_1",
+                "disable": false,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "inlineProbability": 75,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "pet.ca.simplearxan.GuardLocation.csg"
+                    }
+                ],
+                "tamperAction": {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.checksumTamper"
+                   
+                },
+                "nonTamperAction": {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.checksumNonTamper"
+                }
+            }
+        ],
+        
+
+        // "maliciousPackageDetection":[
+        //     {
+        //         "name": "mpg_1",
+        //         "disable": true,
+        //         "debug": true,
+        //         "executeOnBackgroundThread": true,
+        //         "invocationLocations":[
+        //             {
+        //                 "type": "method",
+        //                 "name": "pet.ca.simplearxan.GuardLocation.mpg"
+        //             }
+        //         ],
+        //         "tamperAction":{
+        //             // "type": "fail"
+        //             "type": "method",
+        //             "name": "pet.ca.simplearxan.JKFragment.mpgTamper"
+        //         },
+        //         "nonTamperAction":{
+        //             // "type": "doNothing"
+        //             "type": "method",
+        //             "name": "pet.ca.simplearxan.JKFragment.mpgNonTamper"
+        //         }
+        //     }
+        // ],
+
+        "virtualizationDetection":[
+            {
+            "name": "vdg_virtualization",
+            "disable": false,
+            "debug": true,
+            "executeOnBackgroundThread" : true,
+            "inlineProbability": 50,
+            "invocationLocations":[
+                {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.GuardLocation.vdg1"
+                }
+            ],
+            "tamperAction":{
+                // "type": "fail"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdTamper"
+            },
+            "nonTamperAction":{
+                // "type": "doNothing"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdNonTamper"
+            },
+            "detectModifiedProps": false, 
+            "detectModifiedSecurityProps": false, 
+            "detectModifiedPermissions": false, 
+            "detectModifiedPackageName": false,
+            "detectClonedApps": false
+            },
+            {
+            "name": "vdg_virtualization_ModifiedProps",
+            "disable": false,
+            "debug": true,
+            "executeOnBackgroundThread" : true,
+            "inlineProbability": 50,
+            "invocationLocations":[
+                {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.GuardLocation.vdg2"
+                }
+            ],
+            "tamperAction":{
+                // "type": "fail"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdModifiedPropsTamper"
+            },
+            "nonTamperAction":{
+                // "type": "doNothing"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdModifiedPropsNonTamper"
+            },
+            "detectModifiedProps": true, 
+            "detectModifiedSecurityProps": false, 
+            "detectModifiedPermissions": false, 
+            "detectModifiedPackageName": false,
+            "detectClonedApps": false
+            },
+            {
+            "name": "vdg_virtualization_ModifiedSecurityProps",
+            "disable": false,
+            "debug": true,
+            "executeOnBackgroundThread" : true,
+            "inlineProbability": 50,
+            "invocationLocations":[
+                {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.GuardLocation.vdg3"
+                }
+            ],
+            "tamperAction":{
+                // "type": "fail"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdModifiedSecurityPropsTamper"
+            },
+            "nonTamperAction":{
+                // "type": "doNothing"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdModifiedSecurityPropsNonTamper"
+            },
+            "detectModifiedProps": false, 
+            "detectModifiedSecurityProps": true, 
+            "detectModifiedPermissions": false, 
+            "detectModifiedPackageName": false,
+            "detectClonedApps": false
+            },
+            {
+            "name": "vdg_virtualization_ModifiedPermissions",
+            "disable": false,
+            "debug": true,
+            "executeOnBackgroundThread" : true,
+            "inlineProbability": 50,
+            "invocationLocations":[
+                {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.GuardLocation.vdg4"
+                }
+            ],
+            "tamperAction":{
+                // "type": "fail"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdModifiedPermissionsTamper"
+            },
+            "nonTamperAction":{
+                // "type": "doNothing"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdModifiedPermissionsNonTamper"
+            },
+            "detectModifiedProps": false, 
+            "detectModifiedSecurityProps": false, 
+            "detectModifiedPermissions": true, 
+            "detectModifiedPackageName": false,
+            "detectClonedApps": false
+            },
+            {
+            "name": "vdg_virtualization_ModifiedPackageName",
+            "disable": false,
+            "debug": true,
+            "executeOnBackgroundThread" : true,
+            "inlineProbability": 50,
+            "invocationLocations":[
+                {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.GuardLocation.vdg5"
+                }
+            ],
+            "tamperAction":{
+                // "type": "fail"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdModifiedPackageNameTamper"
+            },
+            "nonTamperAction":{
+                // "type": "doNothing"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdModifiedPackageNameNonTamper"
+            },
+            "detectModifiedProps": false, 
+            "detectModifiedSecurityProps": false, 
+            "detectModifiedPermissions": false, 
+            "detectModifiedPackageName": true,
+            "detectClonedApps": false
+            },
+            {
+            "name": "vdg_virtualization_ClonedApps",
+            "disable": false,
+            "debug": true,
+            "executeOnBackgroundThread" : true,
+            "inlineProbability": 50,
+            "invocationLocations":[
+                {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.GuardLocation.vdg6"
+                }
+            ],
+            "tamperAction":{
+                // "type": "fail"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdClonedAppsTamper"
+            },
+            "nonTamperAction":{
+                // "type": "doNothing"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdClonedAppsNonTamper"
+            },
+            "detectModifiedProps": false, 
+            "detectModifiedSecurityProps": false, 
+            "detectModifiedPermissions": false, 
+            "detectModifiedPackageName": false,
+            "detectClonedApps": true
+            },
+            {
+            "name": "vdg_virtualization_WorkProfileManagement",
+            "disable": false,
+            "debug": true,
+            "executeOnBackgroundThread" : true,
+            "inlineProbability": 50,
+            "invocationLocations":[
+                {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.GuardLocation.vdg7"
+                }
+            ],
+            "tamperAction":{
+                // "type": "fail"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdWorkProfileManagementAppsTamper"
+            },
+            "nonTamperAction":{
+                // "type": "doNothing"
+                "type": "method",
+                "name": "pet.ca.simplearxan.JKFragment.vdWorkProfileManagementAppsNonTamper"
+            },
+            "detectModifiedProps": false, 
+            "detectModifiedSecurityProps": false, 
+            "detectModifiedPermissions": false, 
+            "detectModifiedPackageName": false,
+            "detectClonedApps": false,
+            "detectWorkProfileManagementApps":{
+                "allowedApps":[]
+            }
+            }
+        ],
+        
+        "customGuard":  [
+            {
+                "name" : "Custom_RootDRM",
+                "debug": true,
+                "disable" : true,
+                "guardMethod" : "Arxan.CustomDetectRule.customGuard_RootDRM",
+                "invocationLocations" : [
+                     {
+                "name" : "pet.ca.simplearxan.GuardLocation.cg_drm",
+                "type" : "method"
+                     } 
+             ],
+                "executeOnBackgroundThread" : true,
+                    "nonTamperAction" : {
+                        "name" : "pet.ca.simplearxan.JKFragment.customRootDRMNonTamper",
+                        "type" : "method"
+                    },
+                    "tamperAction" : {
+                        "name" : "pet.ca.simplearxan.JKFragment.customRootDRMTamper",
+                        "type" : "method"
+                    }
+                    },
+                    {
+                "name" : "Custom_USBConnected",
+                "debug": true,
+                "disable" : false,
+                "guardMethod" : "Arxan.CustomDetectRule.customGuard_USBConnected",
+                "invocationLocations" : [
+                     {
+                "name" : "pet.ca.simplearxan.GuardLocation.cg_usbConnect",
+                "type" : "method"
+                     } 
+             ],
+                "executeOnBackgroundThread" : true,
+                    "nonTamperAction" : {
+                        "name" : "pet.ca.simplearxan.JKFragment.customUSBConnectedNonTamper",
+                        "type" : "method"
+                    },
+                    "tamperAction" : {
+                        "name" : "pet.ca.simplearxan.JKFragment.customUSBConnectedTamper",
+                        "type" : "method"
+                    }
+                    },
+                    {
+                "name" : "Custom_DebugMode",
+                "debug": true,
+                "disable" : false,
+                "guardMethod" : "Arxan.CustomDetectRule.customGuard_DebugMode",
+                "invocationLocations" : [
+                     {
+                "name" : "pet.ca.simplearxan.GuardLocation.cg_debugMode",
+                "type" : "method"
+                     } 
+             ],
+                "executeOnBackgroundThread" : true,
+                    "nonTamperAction" : {
+                        "name" : "pet.ca.simplearxan.JKFragment.customDebugModeNonTamper",
+                        "type" : "method"
+                    },
+                    "tamperAction" : {
+                        "name" : "pet.ca.simplearxan.JKFragment.customDebugModeTamper",
+                        "type" : "method"
+                    }
+                    }
+        ],
+
+        "signatureCheck": [
+            {
+                "name": "scg_1",
+                "disable": false,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "signaturePublicKeySHA256": ["@SIGNATURE@"],
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "pet.ca.simplearxan.GuardLocation.scg"
+                    }
+                ],
+                "tamperAction": {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.signatureTamper"
+                },
+                "nonTamperAction": {
+                    "type": "method",
+                    "name": "pet.ca.simplearxan.JKFragment.signatureNonTamper"
+                }
+            }
+        ]
+    }
+}

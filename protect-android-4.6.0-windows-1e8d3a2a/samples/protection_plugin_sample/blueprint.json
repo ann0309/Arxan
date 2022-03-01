@@ -1,0 +1,346 @@
+{
+  "globalConfiguration": {
+    "appAware": {
+      //Follow analytics documentation to fill these fields
+      "disable": false,
+      "debug": true,
+      "endpointURL": "https://endpoint.example.com",
+      "applicationToken": "sample12-3456-7890-1234-567890123456",
+      "uaiUserDefaultsKey": "SomeKey",
+      "checkpoints": {
+        "startupCheckpoint": {
+          "invocationLocation": "ai.digital.sample.SplashFragment.onViewCreated"
+        }
+      },
+      "heartbeat": {
+        "disable": false,
+        "interval": 60,
+        "initialDelay": 5
+      }
+    },
+    // renaming, controlFlowFlattening, inlining, stringEncryption suffer from reflection. Singatures of methods defined in proguard.txt file will be untouched
+    "keepSignatures": "proguard.txt"
+  },
+  "guardConfiguration": {
+    // Code obfuscation guards
+    "renaming": {
+      "disable": false,
+      "renameInResources": true,
+      "renameInNativeLibraries": true
+    },
+    "controlFlowFlattening": {
+      "disable": false
+    },
+    "staticMemberShuffling": {
+      "disable": false
+    },
+    "annotationEncryption": {
+      "disable": false,
+      "debug": true
+    },
+    "inlining": {
+      "disable": false
+    },
+    "stringEncryption": {
+      "disable": false
+    },
+    "operatorRemoval": {
+      "disable": false
+    },
+    "literalHiding": {
+      "disable": false
+    },
+    "debugInfoStrip": {
+      "disable": false,
+      "exclude": [
+        {
+          "type": "class",
+          "name": "android.*"
+        }
+      ]
+    },
+    "deadCodeInjection": {
+      "disable": false,
+      "targets": [
+        {
+          //To prevent from having too much code bloat we only inject dead code into one class which is the most sensitive
+          "type": "method",
+          "name": "ai.digital.sample.MainActivity.*"
+        }
+      ]
+    },
+    "callHiding": {
+      "disable": false,
+      "targets": [
+        {
+          "type": "method",
+          "name": "ai.digital.sample.databinding.ActivityMainBinding.*"
+        },
+        {
+          "type": "method",
+          "name": "ai.digital.sample.SplashFragment.setSecretMessage"
+        }
+      ]
+    },
+    "resourceEncryption" : {
+      "disable": false,
+      "debug": true,
+      "files" : [
+        "assets/message.txt"
+      ]
+    },
+    "maliciousPackageDetection": [
+      {
+        "name": "Malicious package detection",
+        "disable": false,
+        "debug": true,
+        "invocationLocations": [
+          {
+            "type": "startup",
+            "initialDelay": 10
+          }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+     }
+    ],
+    "debuggerDetection": [
+      {
+        "disable": false,
+        "name": "Debugger detection instance 1",
+        "invocationLocations": [
+          {
+            "type": "periodic",
+            "interval": 10,
+            "initialDelay": 0,
+            "probability": 100
+          }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ],
+    // Guards checking runtime
+    "rootDetection": [
+      {
+        "disable": false,
+        "debug": true,
+        "name": "Root detection instance 1",
+        "invocationLocations": [
+          {
+            "type": "periodic",
+            "interval": 30,
+            "initialDelay": 5,
+            "probability": 100
+          }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ],
+    "hookDetection": [
+      {
+        "disable": false,
+        "executeOnBackgroundThread": true,
+        "name": "Hook detection instance 1",
+        "detectMethodHooking": {
+          "include": [
+            {
+              "type": "class",
+              "name": "ai.digital.sample.MainActivity"
+            }
+          ]
+        },
+        "invocationLocations": [
+          {
+            "type": "periodic",
+            "interval": 30,
+            "initialDelay": 6,
+            "probability": 100
+          }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ],
+    "signatureCheck": [
+      {
+        "name": "Signature check instance 1",
+        "disable": false,
+        "signaturePublicKeySHA256": [ "6654a6d1e55776c596f788aae85c15c22d268f7c5696c7397bc52e9393fe793f" ],
+        "invocationLocations": [
+          {
+            "type": "startup",
+            "initialDelay": 0
+          }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ],
+    "emulatorDetection": [
+      {
+        "name": "Emulator detection instance 1",
+        "disable": false,
+        "executeOnBackgroundThread": true,
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "ai.digital.sample.SplashFragment.onViewCreated"
+          }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ],
+    "logStrip": {
+      "disable": false,
+      "safeMode": false
+    },
+    "checksum": [
+      {
+        "disable": false,
+        "debug": true,
+        "name": "Checksum check instance 1",
+        "invocationLocations": [
+          {
+            "type": "startup",
+            "initialDelay": 0
+          }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ],
+    "dynamicInstrumentationDetection": [
+      {
+        "name": "Dynamic instrumentation detection instance 1",
+        "disable": false,
+        "debug": true,
+        "frida": {
+          "detectFridaPresence": { },
+          "detectMethodHooking": {
+            "include": [
+              {
+                "type": "class",
+                "name": "ai.digital.sample.SplashFragment"
+              }
+            ]
+          }
+        },
+        "gameGuardian": { },
+        "invocationLocations": [
+          {
+            "type": "periodic",
+            "interval": 60,
+            "initialDelay": 15,
+            "probability": 100
+          }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ],
+    "resourceVerification": [
+      {
+        "name": "Resource verification instance 1",
+        "disable": false,
+        "debug": true,
+        "invocationLocations": [
+          {
+            "type": "auto"
+          }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        },
+        "files": [
+          "assets/message.txt"
+        ]
+      }
+    ],
+    "classEncryption": {
+      "disable": false,
+      "debug": true,
+      "targets": [
+        "ai.digital.sample.SplashFragment"
+      ]
+    },
+    "virtualizationDetection": [
+      {
+        "name": "Virtualization detection instance 1",
+        "disable": false,
+        "debug": true,
+        "executeOnBackgroundThread": true,
+        "invocationLocations": [
+          {
+            "type": "method",
+            "name": "ai.digital.sample.SplashFragment.setSecretMessage"
+          }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ],
+    "virtualControlDetection": [
+      {
+        "name": "Virtual control detection instance 1",
+        "disable": false,
+        "debug": true,
+        "invocationLocations": [
+          {
+            "type": "periodic",
+            "interval": 5,
+            "initialDelay": 5,
+            "probability": 50
+          }
+        ],
+        "tamperAction": {
+          "type": "doNothing"
+        },
+        "nonTamperAction": {
+          "type": "doNothing"
+        }
+      }
+    ]
+  }
+}

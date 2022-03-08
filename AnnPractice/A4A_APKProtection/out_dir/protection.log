@@ -1,0 +1,87 @@
+Running Digital.ai Android App Protection version 4.5.1
+WARNING: "enableReflectionDebugging" is deprecated. Use "dynamicAnalysis" instead.
+Consult documentation for more information
+Temporary directory of extracted aab is /private/var/folders/3b/6j0dn6290bxgxp1q5jbt4fmw0000gq/T/5dfe-122d-e6f1-5970/memory-game.aab
+SDK values retrieved from manifest: min:21 target:30 max:0
+Using 14414011033541974255 as protection uniqueness seed derived from all inputs
+Seed: 1
+
+Configuring protection...
+Using /Users/wayne_yang/Library/Android/sdk/platforms/android-30/android.jar from ANDROID_HOME
+Mark keep-methods completed in 0.0 seconds
+Computing XML reachability completed in 0.7 seconds
+Computing native reachability completed in 0.0 seconds
+Analyzing reflection completed in 0.0 seconds
+Analyzing Serializable completed in 0.0 seconds
+Initializing for json serde completed in 0.0 seconds
+Loading classes from dex in memory
+
+Load classes from dex in memory completed in 0.1 seconds
+Protection configuration completed in 2.3 seconds
+
+Running bytecode pre-analysis...
+Bytecode pre-analysis completed in 0.7 seconds
+WARNING: some guards have DEBUG mode enabled or charsetType is set to DEBUG. Do not release this protected application until debug mode is disabled!
+
+Evaluating protection passes...
+Protection passes evaluation completed in 0.1 seconds
+
+Running protection passes...
+
+Running Root Detection...
+[rdg_root] Root detectors injected: 1
+[rdg_root] Root detectors inlined: 1
+[rdg_root] Failed to inject: 0
+Root Detection completed in 0.0 seconds
+
+Running Hook Detection...
+[hdg_detectHookTarget] Hook detectors injected: 2
+[hdg_detectHookTarget] Hook detectors inlined: 2
+[hdg_detectHookTarget] Failed to inject: 0
+[hdg_detectHookInstalled] Hook detectors injected: 1
+[hdg_detectHookInstalled] Hook detectors inlined: 1
+[hdg_detectHookInstalled] Failed to inject: 0
+Hook Detection completed in 0.0 seconds
+
+Running Emulator Detection...
+[edg] Emulator detectors injected: 2
+[edg] Emulator detectors inlined: 2
+[edg] Failed to inject: 0
+Emulator Detection completed in 0.0 seconds
+
+Running Dynamic Instrumentation Detection...
+[fdg] Frida detection enabled
+[fdg] Dynamic instrumentation detectors injected: 1
+[fdg] Dynamic instrumentation detectors inlined: 0
+[fdg] Failed to inject: 0
+Dynamic Instrumentation Detection completed in 0.0 seconds
+
+Running Checksum...
+[csg] Checksum invocations injected: 1
+[csg] Checksum invocations inlined: 1
+[csg] Failed to inject: 0
+Checksum completed in 0.0 seconds
+
+Running Deobfuscation Map...
+Deobfuscation Map completed in 0.2 seconds
+Adding QUERY_ALL_PACKAGES permission to manifest: /private/var/folders/3b/6j0dn6290bxgxp1q5jbt4fmw0000gq/T/5dfe-122d-e6f1-5970/memory-game.aab/base/manifest/AndroidManifest.xml
+
+Finalizing bytecode...
+Bytecode finalization completed in 4.3 seconds
+
+Running IRTypeChecker...
+IRTypeChecker completed in 1.2 seconds
+Balancing dex stores completed in 0.1 seconds
+
+Writing protected classes...
+Writing protected classes completed in 3.3 seconds
+
+Patching checksum values...
+Patching checksum values completed in 0.4 seconds
+
+Cleaning up... 
+Dex size increased by 16%
+
+Protection completed in 21.8 seconds
+Zipping back protected items
+Protected aab location: /Users/wayne_yang/工作/AnnPractice/A4A_APKProtection/out_dir/memory-game-unaligned-unsigned-protected.aab

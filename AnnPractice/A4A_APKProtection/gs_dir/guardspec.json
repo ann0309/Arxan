@@ -1,0 +1,443 @@
+{
+    "globalConfiguration": {
+        "seed": 1,
+        "verbosityLevel": {
+            "global": 1
+        },
+        "enableReflectionDebugging": false,
+        "charsetType": "ascii",
+        "keepSignatures": "proguard-rules.cpp"
+    },
+    "guardConfiguration": {
+        "debugInfoStrip": {
+            "disable": true
+        },
+        "logStrip": {
+            "disable": true,
+            "safeMode": true
+        },
+         "renaming": {
+            "disable": true,
+            "renameInResources": false , //是否renaming出現在resource 文件裡的method或class 名字
+            "exclude":[
+                {
+                    "type":"class",
+                    "name":"*"
+                }
+            ],
+            "include":[
+                // {
+                //     "type":"class",
+                //     "name":"com.snatik.matches.CustomGuard"  
+                // },
+                {
+                    "type":"method",
+                    "name":"com.snatik.matches.MainActivity.*"  
+                }
+            ]
+        },
+        "classEncryption": {
+            "disable": true,
+            "debug": true,
+            "targets": [     
+                "com.snatik.matches.engine.*",
+                "com.snatik.matches.ui.*"
+            ]
+        },
+        "stringEncryption": {
+            "disable": true
+        },
+        "inlining": {
+            "disable": true,
+            "exclude":[
+                {
+                    "type":"class",
+                    "name":"*"
+                }
+            ],
+            "include":[
+                {
+                    "type":"class",
+                    "name":"com.snatik.matches.MainActivity"  //把memory（class） 裡呼叫函式的地方移除掉
+                }
+            ]
+
+        },
+        "staticMemberShuffling": {
+          "targets":{           //指定要被shuffle的method or class
+            "include":[  //指定customguard這個函式要被調換位置
+                {
+                    "type": "class",
+                    "name": "com.snatik.matches.TamperAction"
+                }//,
+                // {
+                //     "type": "class",
+                //     "name": "com.snatik.matches.CustomGuard"
+                // }
+                    
+                ],  
+                "exclude":[
+                    {
+                        "type": "class",
+                        "name": "*"
+                    }]
+          },
+          "ranges":{//指定可以shuffle的地方
+              "exclude":[
+                  {
+                      "type":"class",
+                      "name":"*"
+                  }                
+              ],
+              "include":[
+                  {
+                      "type":"class",
+                      "name":"com.snatik.*"
+                  }
+              ]
+          },
+            "disable": true,
+            "safeMode":false
+           // "shuffleMethods": true,
+            //"shuffleFields": false
+        },
+        "operatorRemoval": {
+            "disable": true,
+            "replaceAddOperators": true,
+            "replaceAndOperators": true,
+            "replaceOrOperators": true,
+            "replaceXorOperators": true
+        },
+        "controlFlowFlattening": {
+            "disable": true,
+            "safeMode": true,
+            "exclude": [
+                {
+                    "type": "method",
+                    "name": "*"
+                }
+   
+            ],
+            "include":[
+                {
+                    "type": "method",
+                    "name": "com.snatik.matches.common.Music.*"
+                }
+            ]
+        },
+         "deadCodeInjection": {
+            "disable": true,
+            "targets": [
+                {
+                    "type": "method",
+                    "name": "com.snatik.matches.fragments.DifficultySelectFragment.*"
+                }
+            ]
+        },
+        "callHiding": {
+            "disable": true,
+            "targets": [
+                {
+                    "type": "method",
+                    "name": "com.snatik.matches.MainActivity.*"
+                }
+            ]
+        },
+        "resourceEncryption":{
+            "disable": true,
+            "debug": true,
+            "files":[
+                "assets/textfile.txt"
+            ]
+        },
+        "hookDetection": [
+            {
+                "name": "hdg_detectHookTarget",//guard名字
+                "disable": false,
+                "debug": true,
+                "invocationLocations": [//啟動guard的位置
+                    {
+                        "type": "method",
+                        "name": "com.snatik.matches.common.Memory.save"
+                    },
+                    {
+                        "type": "method",
+                        "name": "com.snatik.matches.events.EventBus.unlisten"
+                    }
+                ],
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "com.snatik.matches.TamperAction.hookDetectionNonTamperAction"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    "name": "com.snatik.matches.TamperAction.hookDetectionTamperAction"
+                },
+                "detectHookInstalled": true,
+                "detectHookTarget": true,
+                "detectHookRequiringApps": true,
+                "inlineProbability": 100
+            },
+            {
+                "name": "hdg_detectHookInstalled",
+                "disable": false,
+                "debug": true,
+                "invocationLocations": [//啟動guard的位置
+                    {
+                        "type": "method",
+                        "name": "com.snatik.matches.common.Memory.save"
+                    }
+                ],
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "com.snatik.matches.TamperAction.hookDetectionNonTamperAction"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    "name": "com.snatik.matches.TamperAction.hookDetectionTamperAction"
+                },
+                "detectHookInstalled": true,
+                "detectHookTarget":false,
+                "detectHookRequiringApps": false,
+                "inlineProbability": 100
+            },
+            {
+                "name": "hdg_detectHookRequiringApps",
+                "disable": true,
+                "debug": true,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "com.snatik.matches.common.Memory.save"
+                    },
+                    {
+                        "type": "method",
+                        "name": "com.snatik.matches.events.EventBus.unlisten"
+                    }
+                ],
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "com.snatik.matches.TamperAction.hookDetectionNonTamperAction"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    "name": "com.snatik.matches.TamperAction.hookDetectionTamperAction"
+                },
+                "detectHookInstalled": false,
+                "detectHookTarget": false,
+                "detectHookRequiringApps": true,
+                "apps": [
+                    "de.robv.android.xposed.installer",
+                    "fi.veetipaananen.android.disableflagsecure"
+                ],
+                "inlineProbability": 100
+            }
+        ],
+      
+        "emulatorDetection": [
+            {
+                "name": "edg",
+                "debug": true,
+                "disable": false,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "com.snatik.matches.fragments.DifficultySelectFragment.animate"//在animate一進去的地方放一個名叫edg的emulator detection guard
+                    },
+                     {
+                         "type": "method",
+                         "name": "com.snatik.matches.MainActivity.onCreate"//在animate一進去的地方放一個名叫edg的emulator detection guard
+                     }
+                ],
+                "inlineProbability": 100,   
+                "nonTamperAction":{
+                    "type": "method",
+                    "name": "com.snatik.matches.TamperAction.emulatorDetectionNonTamperAction2"
+                },
+                "tamperAction":{
+                    "type": "method",
+                    "name": "com.snatik.matches.TamperAction.emulatorDetectionTamperAction2"
+                }
+            }
+        ],
+       
+        "debuggerDetection": [
+             {
+                 "name": "ddg",
+                "disable": true,
+                 "debug": true,
+                "invocationLocations": [
+                     {
+                         "type": "method",
+                         "name": "com.snatik.matches.common.Music.playCorrent"
+                     }
+                 ],
+                 "tamperAction": {
+                     "type": "fail"//,
+                     //"name": ""
+                 },
+                 "nonTamperAction": {
+                     "type": "doNothing"//,
+                     //"name": ""
+                 }
+             }
+         ],
+        
+          "checksum": [
+            {
+                "name": "csg",
+                "disable": false,
+                "debug": true,
+                "inlineProbability": 100,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "com.snatik.matches.MainActivity.onCreate"
+                    }
+                ],
+                "tamperAction": {
+                    "type": "method",
+                    "name": "com.snatik.matches.TamperAction.checksumTamperAction"
+                },
+                "nonTamperAction": {
+                    "type": "method",
+                    "name": "com.snatik.matches.TamperAction.checksumNonTamperAction"
+                }
+            }
+        ],
+        "rootDetection": [
+            {
+                "name": "rdg_root",
+                "disable": false,
+                "debug": true,
+                "detectRootManagementApps": false,
+                "detectRootHidingApps" : false,
+                "detectRootRequiringApps": false,
+                "detectMagiskHide":false,
+                "inlineProbability": 100,
+                "invocationLocations":[{
+                    "type": "method",
+                    "name": "com.snatik.matches.MainActivity.onCreate"
+                }
+                ],
+                "nonTamperAction":{
+                    "type": "doNothing"//,
+                    //"name": ""
+                },
+                "tamperAction":{
+                    "type": "fail"//,
+                   // "name": ""
+                }
+            },
+            {
+                "name": "rdg_RootHidingApps",
+                "disable": true,
+                "debug": true,
+                "detectRootManagementApps": false,
+                "detectRootHidingApps" : false,
+                "detectRootRequiringApps": false,
+                "inlineProbability": 100,
+                "invocationLocations":[{
+                    "type": "method",
+                    "name": "com.snatik.matches.MainActivity.onCreate"
+                }
+                ],
+                "nonTamperAction":{
+                    "type": "doNothing"//,
+                    //"name": ""
+                },
+                "tamperAction":{
+                    "type": "fail"//,
+                   // "name": ""
+                }
+            },
+            {
+                "name": "rdg_RootRequiringApps",
+                "disable": true,
+                "debug": true,
+                "detectRootManagementApps": false,
+                "detectRootHidingApps" : false,
+                "detectRootRequiringApps": false,
+                "inlineProbability": 100,
+                "invocationLocations":[{
+                    "type": "method",
+                    "name": "com.snatik.matches.MainActivity.onCreate"
+                }
+                ],
+                "nonTamperAction":{
+                    "type": "doNothing"//,
+                    //"name": ""
+                },
+                "tamperAction":{
+                    "type": "fail"//,
+                   // "name": ""
+                }
+            }
+        ]
+        ,
+        "dynamicInstrumentationDetection": [
+            {
+                "name": "fdg",
+                "disable": false,
+                "debug": true,
+                "frida": {
+                    //"disablePortScanning": false,
+                    //"excludePorts": [
+                    //  58668
+                    //],
+                    //"disableEmbeddedBinaryCheck": false,
+                    //"disableProcessCheck": false,
+                    //"disableParentCheck": false,
+                    //"disablePreloadedBinaryCheck": false
+		    "detectFridaPresence": {}	
+                  },
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "com.snatik.matches.ui.PopupManager.showPopupWon"
+                    }
+                ],
+                "tamperAction": {
+                    "type": "fail"//,
+                    //"name": ""
+                },
+                "nonTamperAction": {
+                    "type": "doNothing"//,
+                    //"name": ""
+                }
+            }
+        ],
+
+         "resourceVerification": [
+            {
+                "name": "rvg",
+                "disable": true,
+                "debug": true,
+                "inlineProbability": 100,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "com.snatik.matches.events.ui.ResetBackgroundEvent.fire"
+                    }
+                ],
+                "tamperAction": {
+                    "type": "fail"//,
+                    //"name": ""
+                },
+                "nonTamperAction": {
+                    "type": "doNothing"//,
+                    //"name": ""
+                },
+                "files": [
+                    "assets/fonts/grobold.ttf"
+                ]
+            }
+        ]
+
+
+
+
+
+
+     }
+ }

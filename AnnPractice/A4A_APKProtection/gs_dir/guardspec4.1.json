@@ -1,0 +1,457 @@
+{
+    "globalConfiguration": {
+        "seed": 1,
+        "verbosityLevel": {
+            "global": 1
+        },
+        "enableReflectionDebugging": false,
+        "charsetType": "ascii",
+        "keepSignatures": "proguard-rules.properties",
+        "exclude": [
+            {
+                "type": "class",
+                "name": "*"
+            }
+        ],
+        "include": [
+            {
+                "type": "class",
+                "name": "*"
+            }
+        ]
+    },
+    "guardConfiguration": {
+        //若有需要，需排除要tracing 的範圍
+        "debugInfoStrip": {
+            "disable": true,
+            "stripKotlinDebugAnnotations": true,
+            "exclude": [
+            {
+                "type": "class",
+                "name": ""
+            }
+            ],
+            "include": [
+                {
+                    "type": "class",
+                    "name": ""
+                }
+            ]
+        },
+        "logStrip": {
+            "disable": true,
+            "safeMode": true
+        },
+        "renaming": {
+            "disable": true,
+            "renameInResources": true,
+            "renameInNativeLibraries": false
+        },
+        "classEncryption": {
+            "disable": true,
+            "debug": true,
+            "targets": [
+            ]
+        },
+        "stringEncryption": {
+            "disable": true
+        },
+        "annotationEncryption": {
+            "disable": true,
+            "debug": true,
+            "ranges": {
+                "exclude": [
+                    {
+                        "type":"class",
+                        "name":""
+                    }
+                ],
+                "include": [
+                    {
+                        "type":"method",
+                        "name":""
+                    }
+                ]
+            },
+            "targets": {
+                "exclude": [
+                    {
+                        "type":"class",
+                        "name":"kotlin.*"
+                    }
+                ],
+                "include": [
+                    {
+                        "type":"class",
+                        "name":"kotlin.Metadata"
+                    }
+                ]
+            }
+        },
+        "inlining": {
+            "disable": true,
+            "size" : "small"
+        },
+        "staticMemberShuffling": {
+            "disable": true,
+            "safeMode": true,
+            "ranges": {
+                "exclude": [
+                    {
+                        "type":"class",
+                        "name":""
+                    }
+                ],
+                "include": [
+                    {
+                        "type":"method",
+                        "name":""
+                    }
+                ]
+            },
+            "targets": {
+                "exclude": [
+                    {
+                        "type":"class",
+                        "name":"kotlin.*"
+                    }
+                ],
+                "include": [
+                    {
+                        "type":"class",
+                        "name":"kotlin.Metadata"
+                    }
+                ]
+            }
+        },
+        "operatorRemoval": {
+            "disable": true,
+            "replaceAddOperators": true,
+            "replaceAndOperators": true,
+            "replaceOrOperators": true,
+            "replaceXorOperators": true,
+            "exclude": [
+                {
+                    "type": "method",
+                    "name": "com.google.*"
+                },
+                {
+                    "type": "method",
+                    "name": "com.android.*"
+                },
+                {
+                    "type": "method",
+                    "name": "android.*"
+                }
+            ]
+        },
+        "controlFlowFlattening": {
+            "disable": true,
+            "safeMode": false,
+            "exclude": [
+                {
+                    "type": "method",
+                    "name": "com.google.*"
+                },
+                {
+                    "type": "method",
+                    "name": "com.android.*"
+                },
+                {
+                    "type": "method",
+                    "name": "android.*"
+                }
+            ]
+        },
+        "deadCodeInjection": {
+            "disable": true,
+            "targets": [
+                {
+                    "type": "method",
+                    "name": ""
+                }
+            ]
+        },
+        "callHiding": {
+            "disable": true,
+            "targets": [
+                {
+                    "type": "method",
+                    "name": ""
+                }
+            ]
+        },
+        "resourceEncryption":{
+            "disable": true,
+            "debug": true,
+            "files": [
+
+            ]
+        },
+        "malwarePrevention": { 
+            "disable": true,
+            "strandhogg1": {},
+            "strandhogg2": {} 
+        },
+        "literalHiding": {
+            "disable": true,
+            "hideIntLiterals": true,
+            "hideFloatLiterals": true,
+            "hideLongLiterals": true,
+            "hideDoubleLiterals": true,
+            "exclude": [
+                {
+                    "type":"method",
+                    "name":"package.className.methodName"
+                }
+            ],
+            "include": [
+                {
+                    "type":"method",
+                    "name":""
+                }
+            ]
+        },
+        "resourceVerification": [
+            {
+                "name": "rvg_1",
+                "disable": true,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "inlineProbability": 50,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": ""
+                    }
+                ],
+                "tamperAction": 
+                {
+                    "type": "fail"
+                },
+                "nonTamperAction": 
+                {
+                    "type": "doNothing"
+                },
+                "files": [
+
+                ]
+            }
+        ],
+        "debuggerDetection": [
+            {
+                "name": "ddg_1",
+                "disable": true,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": "*onClick"
+                    }
+                ],
+                "tamperAction": {
+                    "type": "fail"
+                },
+                "nonTamperAction": {
+                    "type": "doNothing"
+                }
+            },
+            {
+                "name": "ddg_2",
+                "disable": true,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": ""
+                    }
+                ],
+                "tamperAction": {
+                    "type": "fail"
+                },
+                "nonTamperAction": {
+                    "type": "doNothing"
+                }
+            }
+        ],
+        "emulatorDetection": [
+            {
+                "name": "edg_1",
+                "disable": true,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": ""
+                    }
+                ],
+                "inlineProbability": 50,
+                "tamperAction": {
+                    "type": "fail"
+                },
+                "nonTamperAction": {
+                    "type": "doNothing"
+                }
+            }
+        ],
+        "rootDetection": [
+            {
+                "name": "rdg_1",
+                "disable": true,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": ""
+                    }
+                ],
+                "tamperAction": {
+                    "type": "fail"
+                },
+                "nonTamperAction": {
+                    "type": "doNothing"
+                },
+                // "targetOSRange":{    需要針對android版本偵測再設定
+                //     "min":0,
+                //     "max":11
+                // },
+                "detectRootManagementApps": true,
+                "detectRootHidingApps": true,
+                "detectRootRequiringApps": false,
+                "detectMagiskHide": true,
+                "inlineProbability": 75
+            }
+        ],
+        "hookDetection": [
+            {
+                "name": "hdg_1",
+                "disable": true,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": ""
+                    }
+                ],
+                "tamperAction": {
+                    "type": "fail"
+                },
+                "nonTamperAction": {
+                    "type": "doNothing"
+                },
+                "detectHookInstalled": true,
+                "detectHookTarget": true,
+                "detectHookRequiringApps": true,
+                "detectMethodHooking" :{
+                    "include" : [
+                        {
+                            "type": "method",
+                            "name": ""
+                        }
+                    ],
+                    "exclude" : [
+                        {
+                            "type": "method",
+                            "name": ""
+                        }
+                    ]
+                },
+                "detectMagiskHiddenModules" : true,
+                "disableMagiskModuleDetectionBypassTamper" : false,
+                "apps": [
+                    "de.robv.android.xposed.installer",
+                    "fi.veetipaananen.android.disableflagsecure",
+                    "org.meowcat.edxposed.manager"
+                ],
+                "inlineProbability": 75
+            }
+        ],
+        "dynamicInstrumentationDetection": [
+            {
+                "name": "fdg_1",
+                "disable": true,
+                "debug": true,
+                "frida": {
+                    "detectFridaPresence" :{},
+                    "detectMethodHooking" :{
+                        "include" : [
+                            {
+                                "type": "method",
+                                "name": ""
+                            }
+                        ],
+                        "exclude" : [
+                            {
+                                "type": "method",
+                                "name": ""
+                            }
+                        ]
+                    },
+                },
+                "inlineProbability": 75,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": ""
+                    }
+                ],
+                "tamperAction": {
+                    "type": "fail"
+                },
+                "nonTamperAction": {
+                    "type": "doNothing"
+                }
+            }
+        ],
+        "checksum": [
+            {
+                "name": "csg_1",
+                "disable": true,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "inlineProbability": 75,
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": ""
+                    }
+                ],
+                "tamperAction": {
+                    "type": "fail"
+                },
+                "nonTamperAction": {
+                    "type": "doNothing"
+                }
+            }
+        ],
+        "signatureCheck": [
+            {
+                "name": "scg_1",
+                "disable": true,
+                "debug": true,
+                "executeOnBackgroundThread" : false,
+                "signaturePublicKeySHA256": [
+                    "@SIGNATURE@"
+                    // ,"Any else?"
+                ],
+                "invocationLocations": [
+                    {
+                        "type": "method",
+                        "name": ""
+                    }
+                ],
+                "tamperAction": {
+                    "type": "fail"
+                },
+                "nonTamperAction": {
+                    "type": "doNothing"
+                }
+            }
+        ]
+    }
+}

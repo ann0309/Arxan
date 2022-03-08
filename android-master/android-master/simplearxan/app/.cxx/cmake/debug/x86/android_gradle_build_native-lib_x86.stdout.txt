@@ -1,2 +1,0 @@
-ninja: Entering directory `/Users/chimin/Documents/Android_TEST/simplearxan/app/.cxx/cmake/debug/x86'
-ninja: no work to do.

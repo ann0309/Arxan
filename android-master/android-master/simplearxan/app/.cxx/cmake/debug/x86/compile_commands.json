@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/Users/chimin/Documents/Android_TEST/simplearxan/app/.cxx/cmake/debug/x86",
-  "command": "/Users/chimin/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=i686-none-linux-android19 --gcc-toolchain=/Users/chimin/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/chimin/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++11 -fvisibility=hidden -O0 -fno-limit-debug-info  -O0 -fPIC   -Qunused-arguments -emit-llvm -o CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o -c /Users/chimin/Documents/Android_TEST/simplearxan/app/src/main/cpp/native-lib.cpp",
-  "file": "/Users/chimin/Documents/Android_TEST/simplearxan/app/src/main/cpp/native-lib.cpp"
-}
-]

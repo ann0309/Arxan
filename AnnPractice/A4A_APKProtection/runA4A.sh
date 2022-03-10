@@ -242,6 +242,8 @@ then
     echo "***************************************************************************"
     echo ""
 
+
+    #Reflection Debugging 執行命令
     $ANDROID_HOME/platform-tools/adb install -r "$dir/signed_apk_dir/$APK_NAME-aligned-signed-protected.apk"
-    python "$A4A_DIR/bin/generate_keepSignatures.py" -o "$dir/gs_dir/proguard-rules.properties"
+    python3 "$A4A_DIR/bin/generate_keepSignatures.py" -o "$dir/gs_dir/proguard-rules.properties"
 fi

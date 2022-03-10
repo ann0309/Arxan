@@ -159,7 +159,7 @@
     [
       {
         "debug" : true,
-        "disable" : false,
+        "disable" : true,
         "inlineProbability" : 100,
         "invocationLocations" : 
         [
@@ -316,7 +316,7 @@
     },
     "renaming" : 
     {
-      "disable" : true,
+      "disable" : false,
       "exclude" : 
       [
         {
@@ -335,7 +335,7 @@
           "type" : "method"
         }
       ],
-      "renameInResources" : false //是否renaming出現在resource 文件裡的method或class 名字
+      "renameInResources" : true //是否renaming出現在resource 文件裡的method或class 名字
     },
     "resourceEncryption" : 
     {
@@ -382,9 +382,9 @@
       {
         "debug" : true,
         "detectMagiskHide" : false,
-        "detectRootHidingApps" : false,
+        "detectRootHidingApps" : true,
         "detectRootManagementApps" : false,
-        "detectRootRequiringApps" : false,
+        "detectRootRequiringApps" : true,
         "disable" : false,
         "inlineProbability" : 100,
         "invocationLocations" : 
@@ -411,7 +411,7 @@
         "detectRootHidingApps" : false,
         "detectRootManagementApps" : false,
         "detectRootRequiringApps" : false,
-        "disable" : true,
+        "disable" : false,
         "inlineProbability" : 100,
         "invocationLocations" : 
         [
@@ -437,7 +437,7 @@
         "detectRootHidingApps" : false,
         "detectRootManagementApps" : false,
         "detectRootRequiringApps" : false,
-        "disable" : true,
+        "disable" : false,
         "inlineProbability" : 100,
         "invocationLocations" : 
         [
@@ -449,9 +449,9 @@
         "name" : "rdg_RootRequiringApps",
         "nonTamperAction" : 
         {
-          "type" : "doNothing" //,
+          "name" : "com.snatik.matches.TamperAction.rootDetectionNonTamperAction",
+          "type" : "method"
         },
-        //"name": ""
         "tamperAction" : 
         {
           "type" : "fail" //,
@@ -482,10 +482,6 @@
       "safeMode" : false,
       "targets" : 
       {
-        // {
-        //     "type": "class",
-        //     "name": "com.snatik.matches.CustomGuard"
-        // }
         "exclude" : 
         [
           {
@@ -500,7 +496,11 @@
           {
             "name" : "com.snatik.matches.TamperAction",
             "type" : "class"
-          } //,
+          },
+          {
+            "name" : "com.snatik.matches.CustomGuard",
+            "type" : "class"
+          }
         ]
       }
     },

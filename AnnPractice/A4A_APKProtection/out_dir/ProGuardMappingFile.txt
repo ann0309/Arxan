@@ -1,1 +1,5 @@
+com.snatik.matches.MainActivity -> com.snatik.matches.MainActivity:
+    void setBackgroundImage() -> KE
+    void loadTextFile() -> qE
+    void lambda$loadTextFile$0(android.content.DialogInterface,int) -> xE
 

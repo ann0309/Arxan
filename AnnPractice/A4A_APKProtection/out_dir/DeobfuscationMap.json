@@ -2,5 +2,16 @@
   "classes" : [],
   "fields" : [],
   "inliningMap" : [],
-  "methods" : []
+  "methods" : 
+  [
+    {
+      "com.snatik.matches.MainActivity.KE:()V" : "com.snatik.matches.MainActivity.setBackgroundImage:()V"
+    },
+    {
+      "com.snatik.matches.MainActivity.qE:()V" : "com.snatik.matches.MainActivity.loadTextFile:()V"
+    },
+    {
+      "com.snatik.matches.MainActivity.xE:(Landroid/content/DialogInterface;I)V" : "com.snatik.matches.MainActivity.lambda$loadTextFile$0:(Landroid/content/DialogInterface;I)V"
+    }
+  ]
 }

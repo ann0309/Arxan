@@ -17,8 +17,8 @@
             "safeMode": true
         },
          "renaming": {
-            "disable": true,
-            "renameInResources": false , //是否renaming出現在resource 文件裡的method或class 名字
+            "disable": false,
+            "renameInResources": true , //是否renaming出現在resource 文件裡的method或class 名字
             "exclude":[
                 {
                     "type":"class",
@@ -69,11 +69,11 @@
                 {
                     "type": "class",
                     "name": "com.snatik.matches.TamperAction"
-                }//,
-                // {
-                //     "type": "class",
-                //     "name": "com.snatik.matches.CustomGuard"
-                // }
+                },
+                {
+                     "type": "class",
+                     "name": "com.snatik.matches.CustomGuard"
+                 }
                     
                 ],  
                 "exclude":[
@@ -238,7 +238,7 @@
             {
                 "name": "edg",
                 "debug": true,
-                "disable": false,
+                "disable": true,
                 "invocationLocations": [
                     {
                         "type": "method",
@@ -311,8 +311,8 @@
                 "disable": false,
                 "debug": true,
                 "detectRootManagementApps": false,
-                "detectRootHidingApps" : false,
-                "detectRootRequiringApps": false,
+                "detectRootHidingApps" : true,
+                "detectRootRequiringApps": true,
                 "detectMagiskHide":false,
                 "inlineProbability": 100,
                 "invocationLocations":[{
@@ -331,7 +331,7 @@
             },
             {
                 "name": "rdg_RootHidingApps",
-                "disable": true,
+                "disable": false,
                 "debug": true,
                 "detectRootManagementApps": false,
                 "detectRootHidingApps" : false,
@@ -353,7 +353,7 @@
             },
             {
                 "name": "rdg_RootRequiringApps",
-                "disable": true,
+                "disable": false,
                 "debug": true,
                 "detectRootManagementApps": false,
                 "detectRootHidingApps" : false,
@@ -365,8 +365,8 @@
                 }
                 ],
                 "nonTamperAction":{
-                    "type": "doNothing"//,
-                    //"name": ""
+                    "type": "method",
+                    "name": "com.snatik.matches.TamperAction.rootDetectionNonTamperAction"
                 },
                 "tamperAction":{
                     "type": "fail"//,
